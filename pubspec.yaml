@@ -1,0 +1,20 @@
+name: pixel_perfect
+description: Development tool that helps you make your flutter application "pixel perfect"
+version: 1.0.0
+author: Kherel Kechil
+homepage: https://github.com/kherel/pixel_perfect
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
