@@ -32,9 +32,11 @@ import 'package:pixel_perfect/pixel_perfect.dart';
 ```
 
 ```dart
-  return PixelPerfect(
-    image: 'assets/design.png', // path to your asset image
-    offset: Offset(0, 0)  // optional argument if you need to move image
-    child: Scaffold()
+return PixelPerfect(
+  image: 'assets/design.png', // path to your asset image
+  offset: Offset(0, 0)  // optional argument if you need to move image
+  child: Scaffold(
+    ..
   )
+)
 ```
