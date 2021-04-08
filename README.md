@@ -1,12 +1,14 @@
 # pixel_perfect
 
+[![Pub](https://img.shields.io/pub/v/pixel_perfect.svg)](https://pub.dartlang.org/packages/pixel_perfect)
+
 Add semi transparent image to your screen.
 
 ![demo](demo.gif)
 
 ## Getting started
 
-Add animated_theme_switcher in your `pubspec.yaml` dependencies.
+Add pixel_perfect in your `pubspec.yaml` dependencies.
 
 ```yaml
 dependencies:

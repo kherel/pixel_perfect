@@ -1,7 +1,6 @@
 name: pixel_perfect
 description: Development tool that helps you make your flutter application "pixel perfect"
-version: 1.0.0
-author: Kherel Kechil
+version: 1.0.1
 homepage: https://github.com/kherel/pixel_perfect
 
 environment:
