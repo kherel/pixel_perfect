@@ -1,6 +1,8 @@
 # pixel_perfect
 
 [![Pub](https://img.shields.io/pub/v/pixel_perfect.svg)](https://pub.dartlang.org/packages/pixel_perfect)
+[![GitHub](https://img.shields.io/kherel/pixel_perfect.svg)](https://github.com/kherel/pixel_perfect/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/kherel/pixel_perfect)
 
 Add semi transparent image to your screen.
 
