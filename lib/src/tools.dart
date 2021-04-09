@@ -7,10 +7,14 @@ class Tools extends StatefulWidget {
     required this.opacity,
     required this.handleOpacityChange,
     required this.bottom,
+    required this.isDrag,
+    required this.toggleDrag,
   }) : super(key: key);
 
   final double opacity;
   final double bottom;
+  final bool isDrag;
+  final VoidCallback toggleDrag;
 
   final ValueChanged<double> handleOpacityChange;
 
@@ -19,8 +23,6 @@ class Tools extends StatefulWidget {
 }
 
 class _ToolsState extends State<Tools> {
-
-  ///
   late double bottom;
 
   @override
@@ -39,25 +41,27 @@ class _ToolsState extends State<Tools> {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: bottom,
-      left: 0,
-      right: 0,
+      left: 5,
+      right: 5,
       child: Opacity(
         opacity: widget.opacity.clamp(0.1, 1.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            GestureDetector(
+              onTap: () => widget.toggleDrag(),
+              child: _Button(
+                icon: Icons.open_with,
+                isColorsInverted: widget.isDrag,
+              ),
+            ),
+            SizedBox(width: 5),
             Row(
               children: [
-                SizedBox(width: 5),
                 GestureDetector(
                   onVerticalDragUpdate: onVerticalDragUpdate,
-                  child: Container(
-                    padding: EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child:
-                        Icon(Icons.unfold_more, color: iconColor(), size: 24),
+                  child: _Button(
+                    icon: Icons.unfold_more,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -74,8 +78,43 @@ class _ToolsState extends State<Tools> {
       ),
     );
   }
+}
 
-  Color iconColor() {
+class _Button extends StatelessWidget {
+  const _Button({
+    Key? key,
+    required this.icon,
+    this.isColorsInverted = false,
+  }) : super(key: key);
+
+  final IconData icon;
+  final bool isColorsInverted;
+
+  @override
+  Widget build(BuildContext context) {
+    late Color background;
+    late Color color;
+    if (isColorsInverted) {
+      background = iconColor(context);
+      color = Theme.of(context).primaryColor;
+    } else {
+      background = Theme.of(context).primaryColor;
+      color = iconColor(context);
+    }
+    return Container(
+      padding: EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Theme.of(context).primaryColor,
+        ),
+        color: background,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(icon, color: color, size: 24),
+    );
+  }
+
+  Color iconColor(BuildContext context) {
     var color = Theme.of(context).iconTheme.color != Colors.black87
         ? Theme.of(context).iconTheme.color
         : Theme.of(context).primaryColor == Colors.white

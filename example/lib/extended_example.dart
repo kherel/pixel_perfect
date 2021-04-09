@@ -39,8 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     /// Wrap scaffold with PexilPerfect Widget
-    return PixelPerfect(
-      assetPath: 'assets/design.png', // path to your asset image
+    return PixelPerfect.extended(
+      image: Image.asset(
+        'assets/element.png',
+        scale: 2,
+      ), // path to your asset image
+      initBottom: 100, //  default bottom distance 
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title!),

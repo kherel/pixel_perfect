@@ -6,7 +6,8 @@
 
 Add semi transparent image to your screen.
 
-![demo](demo.gif)
+![demo1](demo1.gif)
+![demo2](demo2.gif)
 
 ## Getting started
 
@@ -18,6 +19,8 @@ dependencies:
 ```
 
 ### How To Use
+
+**Simple use**
 
 Add assets folder with images to your `pubspec.yaml`
 
@@ -34,9 +37,26 @@ import 'package:pixel_perfect/pixel_perfect.dart';
 ```
 
 ```dart
+
 return PixelPerfect(
-  image: 'assets/design.png', // path to your asset image
-  offset: Offset(0, 0)  // optional argument if you need to move image
+  assetPath: 'assets/design.png', // path to your asset image
+  child: Scaffold(
+    ..
+  )
+)
+```
+
+**Extended use**
+
+```dart
+
+return PixelPerfect.extended(
+  image: Image.asset( // any image file
+    'assets/element.png',
+    scale: 2,
+  ), 
+  initBottom: 20, //  default bottom distance (optional)
+  offset: Offset.zero, // default image offset (optional)
   child: Scaffold(
     ..
   )
