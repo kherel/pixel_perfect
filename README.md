@@ -5,7 +5,7 @@
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/kherel/pixel_perfect)
 
-Add semi transparent image to your screen.
+Put a semi-transparent image with the design over the top of the developed layout. It helps you to compare original design and current page.
 
 ![demo1](demo1.gif)
 ![demo2](demo2.gif)
