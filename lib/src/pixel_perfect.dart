@@ -11,11 +11,6 @@ class PixelPerfect extends StatefulWidget {
     this.bottom = 20,
   }) : super(key: key);
 
-  final Widget child;
-  final Offset offset;
-  final Image? image;
-  final double bottom;
-
   /// Creates an PixelPerfect Basic Widget.
   /// The [child] argument is a required argument usually your scaffold widget.
   /// The [assetPath] argument is the path to your asset design image
@@ -37,18 +32,18 @@ class PixelPerfect extends StatefulWidget {
   /// The [child] argument is a required argument usually your scaffold widget.
   /// The [image] argument is your image with your design.
   ///
-  /// The [initBottom] argument is space from the bottom of the screen to Pixel Perfect toolbar in px.
-  /// Default value is 20.0 px;
+  /// The [initBottom] argument is space from the bottom of the screen to
+  /// Pixel Perfect toolbar in px. Default value is 20.0 px;
   ///
   /// The [offset] argument is init image offset.
   /// Default value is Offset(0, 0)
 
   factory PixelPerfect.extended({
     Key? key,
-    required child,
     Offset offset = Offset.zero,
     Image? image,
     double initBottom = 20.0,
+    required Widget child,
   }) =>
       PixelPerfect._(
         key: key,
@@ -57,6 +52,11 @@ class PixelPerfect extends StatefulWidget {
         bottom: initBottom,
         offset: offset,
       );
+
+  final Widget child;
+  final Offset offset;
+  final Image? image;
+  final double bottom;
 
   @override
   _PixelPerfectState createState() => _PixelPerfectState();
@@ -81,7 +81,7 @@ class _PixelPerfectState extends State<PixelPerfect> {
     offset = widget.offset;
   }
 
-  void onPanUpdate(details) {
+  void onPanUpdate(DragUpdateDetails details) {
     var x = details.globalPosition.dx - initX;
     var y = details.globalPosition.dy - initY;
     setState(() {
@@ -120,7 +120,7 @@ class _PixelPerfectState extends State<PixelPerfect> {
                           child: widget.image!,
                         ),
                       )
-                    : Text('no image'),
+                    : const Text('no image'),
               ),
             ),
             Tools(

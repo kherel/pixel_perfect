@@ -1,3 +1,7 @@
+## 1.0.3
+
+  - Add extended widget
+
 ## 1.0.2
 
   - Update readme

@@ -55,16 +55,16 @@ class _ToolsState extends State<Tools> {
                 isColorsInverted: widget.isDrag,
               ),
             ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             Row(
               children: [
                 GestureDetector(
                   onVerticalDragUpdate: onVerticalDragUpdate,
-                  child: _Button(
+                  child: const _Button(
                     icon: Icons.unfold_more,
                   ),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Expanded(
                   child: CupertinoSlider(
                     value: widget.opacity,
@@ -102,7 +102,7 @@ class _Button extends StatelessWidget {
       color = iconColor(context);
     }
     return Container(
-      padding: EdgeInsets.all(3),
+      padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).primaryColor,
