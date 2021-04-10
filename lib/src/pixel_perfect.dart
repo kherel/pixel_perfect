@@ -110,10 +110,13 @@ class _PixelPerfectState extends State<PixelPerfect> {
           clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
-            widget.child,
+            AbsorbPointer(
+              absorbing: isDrag,
+              child: widget.child,
+            ),
             Positioned(
-              left: offset.dx,
-              top: offset.dy,
+              left: offset.dx - (isDrag ? 1 : 0), // divide border width
+              top: offset.dy - (isDrag ? 1 : 0), // divide border width
               child: IgnorePointer(
                 ignoring: true,
                 child: Opacity(

@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Wrap scaffold with PexilPerfect Widget
     return PixelPerfect.extended(
       image: Image.asset(
-        'assets/element.png',
+        'assets/pixel_perfect.png',
         scale: 2,
       ), // path to your asset image
       initBottom: 100, //  default bottom distance
