@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'assets/element.png',
         scale: 2,
       ), // path to your asset image
-      initBottom: 100, //  default bottom distance 
+      initBottom: 100, //  default bottom distance
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title!),
@@ -53,9 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-              ),
+              const Text('You have pushed the button this many times:'),
               Text(
                 '$_counter',
                 style: Theme.of(context).textTheme.headline4,
@@ -66,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
     );
