@@ -1,3 +1,7 @@
+## 1.0.7
+
+  - add abserb pointer
+
 ## 1.0.6
 
   - long images fix
