@@ -18,12 +18,19 @@ class PixelPerfect extends StatefulWidget {
     Key? key,
     required Widget child,
     String? assetPath,
+    double? scale = 2,
   }) {
     return PixelPerfect._(
       key: key,
       child: child,
       offset: Offset.zero,
-      image: assetPath != null ? Image.asset(assetPath) : null,
+      image: assetPath != null
+          ? Image.asset(
+              assetPath,
+              fit: BoxFit.none,
+              scale: scale,
+            )
+          : null,
       bottom: 20,
     );
   }
@@ -99,17 +106,20 @@ class _PixelPerfectState extends State<PixelPerfect> {
         onPanStart: isDrag ? onPanStart : null,
         onPanUpdate: isDrag ? onPanUpdate : null,
         child: Stack(
+          fit: StackFit.passthrough,
+          clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
             widget.child,
-            IgnorePointer(
-              ignoring: true,
-              child: Opacity(
-                opacity: opacity,
-                child: hasImage
-                    ? Transform.translate(
-                        offset: offset,
-                        child: Container(
+            Positioned(
+              left: offset.dx,
+              top: offset.dy,
+              child: IgnorePointer(
+                ignoring: true,
+                child: Opacity(
+                  opacity: opacity,
+                  child: hasImage
+                      ? Container(
                           decoration: isDrag
                               ? BoxDecoration(
                                   border: Border.all(
@@ -118,9 +128,9 @@ class _PixelPerfectState extends State<PixelPerfect> {
                                 )
                               : null,
                           child: widget.image!,
-                        ),
-                      )
-                    : const Text('no image'),
+                        )
+                      : const Text('no image'),
+                ),
               ),
             ),
             Tools(

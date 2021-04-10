@@ -1,3 +1,7 @@
+## 1.0.6
+
+  - long images fix
+
 ## 1.0.5
 
   - Better description
