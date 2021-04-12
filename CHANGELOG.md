@@ -1,3 +1,9 @@
+## 1.0.8
+
+  - add hide unhide functionality
+  - add initial opacity parameter
+  - add logo
+
 ## 1.0.7
 
   - add abserb pointer
