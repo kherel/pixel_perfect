@@ -10,6 +10,8 @@
 Put a semi-transparent image with the design over the top of the developed layout. It helps you to compare original design and current page.
 
 ![demo1](demo1.gif)
+
+
 ![demo2](demo2.gif)
 
 ## Getting started
