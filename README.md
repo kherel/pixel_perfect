@@ -5,6 +5,8 @@
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/kherel/pixel_perfect)
 
+![logo](logo.png)
+
 Put a semi-transparent image with the design over the top of the developed layout. It helps you to compare original design and current page.
 
 ![demo1](demo1.gif)
@@ -41,6 +43,7 @@ import 'package:pixel_perfect/pixel_perfect.dart';
 
 return PixelPerfect(
   assetPath: 'assets/design.png', // path to your asset image
+  scale: 1 // scale value (optional)
   child: Scaffold(
     ..
   )
@@ -58,6 +61,7 @@ return PixelPerfect.extended(
   ), 
   initBottom: 20, //  default bottom distance (optional)
   offset: Offset.zero, // default image offset (optional)
+  initOpacity: 0.4 // init opacity value (optional)
   child: Scaffold(
     ..
   )

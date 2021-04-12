@@ -9,16 +9,20 @@ class PixelPerfect extends StatefulWidget {
     this.offset = Offset.zero,
     this.image,
     this.bottom = 20,
-  }) : super(key: key);
+    required this.initOpacity,
+  })   : assert(initOpacity >= 0.0 && initOpacity <= 1.0),
+        super(key: key);
 
   /// Creates an PixelPerfect Basic Widget.
   /// The [child] argument is a required argument usually your scaffold widget.
   /// The [assetPath] argument is the path to your asset design image
+  /// The [scale] argument is scale parametr of your image.
+
   factory PixelPerfect({
     Key? key,
     required Widget child,
     String? assetPath,
-    double? scale = 2,
+    double? scale = 1,
   }) {
     return PixelPerfect._(
       key: key,
@@ -32,6 +36,7 @@ class PixelPerfect extends StatefulWidget {
             )
           : null,
       bottom: 20,
+      initOpacity: 0.4,
     );
   }
 
@@ -50,6 +55,7 @@ class PixelPerfect extends StatefulWidget {
     Offset offset = Offset.zero,
     Image? image,
     double initBottom = 20.0,
+    double initOpacity = 0.4,
     required Widget child,
   }) =>
       PixelPerfect._(
@@ -58,24 +64,27 @@ class PixelPerfect extends StatefulWidget {
         image: image,
         bottom: initBottom,
         offset: offset,
+        initOpacity: initOpacity,
       );
 
   final Widget child;
   final Offset offset;
   final Image? image;
   final double bottom;
+  final double initOpacity;
 
   @override
   _PixelPerfectState createState() => _PixelPerfectState();
 }
 
 class _PixelPerfectState extends State<PixelPerfect> {
-  double opacity = 0.4;
   bool isDrag = false;
   late Offset offset;
 
   late double initX;
   late double initY;
+  late double opacity;
+  late bool isHide;
 
   void onPanStart(DragStartDetails details) {
     initX = details.globalPosition.dx;
@@ -84,8 +93,10 @@ class _PixelPerfectState extends State<PixelPerfect> {
 
   @override
   void initState() {
-    super.initState();
     offset = widget.offset;
+    opacity = widget.initOpacity;
+    isHide = widget.initOpacity == 0;
+    super.initState();
   }
 
   void onPanUpdate(DragUpdateDetails details) {
@@ -143,6 +154,15 @@ class _PixelPerfectState extends State<PixelPerfect> {
               toggleDrag: () => setState(() {
                 isDrag = !isDrag;
               }),
+              isHide: opacity == 0,
+              isRangeShown: !isHide,
+              toogleHide: () {
+                var isHide = opacity != 0;
+                setState(() {
+                  this.isHide = isHide;
+                  opacity = isHide ? 0.0 : widget.initOpacity;
+                });
+              },
               isDrag: isDrag,
             ),
           ],

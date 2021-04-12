@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'switcher.dart';
+
 class Tools extends StatefulWidget {
   Tools({
     Key? key,
@@ -9,13 +11,18 @@ class Tools extends StatefulWidget {
     required this.bottom,
     required this.isDrag,
     required this.toggleDrag,
+    required this.toogleHide,
+    required this.isHide,
+    required this.isRangeShown,
   }) : super(key: key);
 
   final double opacity;
   final double bottom;
   final bool isDrag;
+  final bool isHide;
+  final VoidCallback toogleHide;
   final VoidCallback toggleDrag;
-
+  final bool isRangeShown;
   final ValueChanged<double> handleOpacityChange;
 
   @override
@@ -39,6 +46,7 @@ class _ToolsState extends State<Tools> {
 
   @override
   Widget build(BuildContext context) {
+    var activeColor = getColor(context);
     return Positioned(
       bottom: bottom,
       left: 5,
@@ -53,30 +61,60 @@ class _ToolsState extends State<Tools> {
               child: _Button(
                 icon: Icons.open_with,
                 isColorsInverted: widget.isDrag,
+                activeColor: activeColor,
               ),
             ),
-            const SizedBox(width: 5),
+            SizedBox(height: widget.isRangeShown ? 1 : 7),
             Row(
               children: [
                 GestureDetector(
                   onVerticalDragUpdate: onVerticalDragUpdate,
-                  child: const _Button(
+                  child: _Button(
                     icon: Icons.unfold_more,
+                    activeColor: activeColor,
                   ),
                 ),
                 const SizedBox(width: 5),
-                Expanded(
-                  child: CupertinoSlider(
-                    value: widget.opacity,
-                    onChanged: widget.handleOpacityChange,
-                  ),
-                )
+                if (widget.isRangeShown)
+                  Expanded(
+                    child: CupertinoSlider(
+                      value: widget.opacity,
+                      onChanged: widget.handleOpacityChange,
+                    ),
+                  )
               ],
+            ),
+            SizedBox(height: widget.isRangeShown ? 5 : 11),
+            GestureDetector(
+              onTap: () => widget.toogleHide(),
+              child: Row(
+                children: [
+                  BrandSwitcher(
+                    isAcitve: !widget.isHide,
+                    color: activeColor,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    widget.isHide ? 'Show' : 'Hide',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Color getColor(BuildContext context) {
+    var color = Theme.of(context).iconTheme.color != Colors.black87
+        ? Theme.of(context).iconTheme.color
+        : Theme.of(context).primaryColor == Colors.white
+            ? Colors.grey
+            : Colors.white;
+
+    return color!;
   }
 }
 
@@ -84,22 +122,23 @@ class _Button extends StatelessWidget {
   const _Button({
     Key? key,
     required this.icon,
+    required this.activeColor,
     this.isColorsInverted = false,
   }) : super(key: key);
 
   final IconData icon;
   final bool isColorsInverted;
-
+  final Color activeColor;
   @override
   Widget build(BuildContext context) {
     late Color background;
     late Color color;
     if (isColorsInverted) {
-      background = iconColor(context);
+      background = activeColor;
       color = Theme.of(context).primaryColor;
     } else {
       background = Theme.of(context).primaryColor;
-      color = iconColor(context);
+      color = activeColor;
     }
     return Container(
       padding: const EdgeInsets.all(3),
@@ -112,15 +151,5 @@ class _Button extends StatelessWidget {
       ),
       child: Icon(icon, color: color, size: 24),
     );
-  }
-
-  Color iconColor(BuildContext context) {
-    var color = Theme.of(context).iconTheme.color != Colors.black87
-        ? Theme.of(context).iconTheme.color
-        : Theme.of(context).primaryColor == Colors.white
-            ? Colors.grey
-            : Colors.white;
-
-    return color!;
   }
 }

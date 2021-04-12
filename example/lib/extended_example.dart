@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         scale: 2,
       ), // path to your asset image
       initBottom: 100, //  default bottom distance
+      initOpacity: 0, // default 
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title!),
