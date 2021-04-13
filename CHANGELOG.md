@@ -1,3 +1,7 @@
+## 1.0.9
+
+  - add flutter awesome badge
+
 ## 1.0.8
 
   - add hide unhide functionality
