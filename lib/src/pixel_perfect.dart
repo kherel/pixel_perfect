@@ -162,7 +162,11 @@ class _PixelPerfectState extends State<PixelPerfect> {
                 var isHide = opacity != 0;
                 setState(() {
                   this.isHide = isHide;
-                  opacity = isHide ? 0.0 : widget.initOpacity;
+                  opacity = isHide
+                      ? 0.0
+                      : widget.initOpacity == 0
+                          ? 0.4
+                          : widget.initOpacity;
                 });
               },
               isDrag: isDragSwitcherOn,

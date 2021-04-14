@@ -41,11 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Wrap scaffold with PexilPerfect Widget
     return PixelPerfect.extended(
       image: Image.asset(
-        'assets/pixel_perfect.png',
+        'assets/element.png',
         scale: 2,
       ), // path to your asset image
       initBottom: 100, //  default bottom distance
-      initOpacity: 0, // default 
+      initOpacity: 0, // initial image opacity
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title!),
