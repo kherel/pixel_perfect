@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'tools.dart';
 
 class PixelPerfect extends StatefulWidget {
+  /// The [child] argument is a required argument usually your scaffold widget.
+  /// The [bottom] argument is space from the bottom of the screen to
+  /// Pixel Perfect toolbar in px. Default value is 20.0 px;
+  /// The [offset] argument is init image offset.
+  /// Default value is Offset(0, 0)
+
   const PixelPerfect._({
     Key? key,
     required this.child,
@@ -14,20 +20,22 @@ class PixelPerfect extends StatefulWidget {
         super(key: key);
 
   /// Creates an PixelPerfect Basic Widget.
-  /// The [child] argument is a required argument usually your scaffold widget.
   /// The [assetPath] argument is the path to your asset design image
-  /// The [scale] argument is scale parametr of your image.
+  /// The [scale] argument is scale parameter of your image. Default value is 1;
 
   factory PixelPerfect({
     Key? key,
     required Widget child,
     String? assetPath,
-    double? scale = 1,
+    double? scale = 1.0,
+    Offset offset = Offset.zero,
+    double initBottom = 20.0,
+    double initOpacity = 0.4,
   }) {
     return PixelPerfect._(
       key: key,
       child: child,
-      offset: Offset.zero,
+      offset: offset,
       image: assetPath != null
           ? Image.asset(
               assetPath,
@@ -35,25 +43,18 @@ class PixelPerfect extends StatefulWidget {
               scale: scale,
             )
           : null,
-      bottom: 20,
-      initOpacity: 0.4,
+      bottom: initBottom,
+      initOpacity: initOpacity,
     );
   }
 
   /// Creates an PixelPerfect extended Widget.
-  /// The [child] argument is a required argument usually your scaffold widget.
   /// The [image] argument is your image with your design.
-  ///
-  /// The [initBottom] argument is space from the bottom of the screen to
-  /// Pixel Perfect toolbar in px. Default value is 20.0 px;
-  ///
-  /// The [offset] argument is init image offset.
-  /// Default value is Offset(0, 0)
 
   factory PixelPerfect.extended({
     Key? key,
-    Offset offset = Offset.zero,
     Image? image,
+    Offset offset = Offset.zero,
     double initBottom = 20.0,
     double initOpacity = 0.4,
     required Widget child,
@@ -78,7 +79,7 @@ class PixelPerfect extends StatefulWidget {
 }
 
 class _PixelPerfectState extends State<PixelPerfect> {
-  bool isDrag = false;
+  bool isDragSwitcherOn = false;
   late Offset offset;
 
   late double initX;
@@ -112,29 +113,30 @@ class _PixelPerfectState extends State<PixelPerfect> {
   @override
   Widget build(BuildContext context) {
     var hasImage = widget.image != null;
+    var isDraggable = isDragSwitcherOn && opacity != 0;
     return Material(
       child: GestureDetector(
-        onPanStart: isDrag ? onPanStart : null,
-        onPanUpdate: isDrag ? onPanUpdate : null,
+        onPanStart: isDraggable ? onPanStart : null,
+        onPanUpdate: isDraggable ? onPanUpdate : null,
         child: Stack(
           fit: StackFit.passthrough,
           clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
             AbsorbPointer(
-              absorbing: isDrag,
+              absorbing: isDraggable,
               child: widget.child,
             ),
             Positioned(
-              left: offset.dx - (isDrag ? 1 : 0), // divide border width
-              top: offset.dy - (isDrag ? 1 : 0), // divide border width
+              left: offset.dx - (isDraggable ? 1 : 0), // divide border width
+              top: offset.dy - (isDraggable ? 1 : 0), // divide border width
               child: IgnorePointer(
                 ignoring: true,
                 child: Opacity(
                   opacity: opacity,
                   child: hasImage
                       ? Container(
-                          decoration: isDrag
+                          decoration: isDraggable
                               ? BoxDecoration(
                                   border: Border.all(
                                     color: Theme.of(context).accentColor,
@@ -152,7 +154,7 @@ class _PixelPerfectState extends State<PixelPerfect> {
               handleOpacityChange: handleOpacityChange,
               bottom: widget.bottom,
               toggleDrag: () => setState(() {
-                isDrag = !isDrag;
+                isDragSwitcherOn = !isDragSwitcherOn;
               }),
               isHide: opacity == 0,
               isRangeShown: !isHide,
@@ -163,7 +165,7 @@ class _PixelPerfectState extends State<PixelPerfect> {
                   opacity = isHide ? 0.0 : widget.initOpacity;
                 });
               },
-              isDrag: isDrag,
+              isDrag: isDragSwitcherOn,
             ),
           ],
         ),

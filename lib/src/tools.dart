@@ -57,7 +57,7 @@ class _ToolsState extends State<Tools> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: () => widget.toggleDrag(),
+              onTap: widget.isHide ? null : () => widget.toggleDrag(),
               child: _Button(
                 icon: Icons.open_with,
                 isColorsInverted: widget.isDrag,
