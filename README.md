@@ -73,3 +73,9 @@ return PixelPerfect.extended(
   )
 )
 ```
+
+
+**Video tutorials** by [Learn App Code](https://www.youtube.com/channel/UChMjpXwPFzK6x82qz-R_TEQ)
+
+[How to Make Pixel Perfect Flutter Apps](https://www.youtube.com/watch?v=L4G_ylrmKQ8)  
+[How to Make Responsive Flutter Apps, Pixel Perfect](https://www.youtube.com/watch?v=Chat5vYVGg0) 

@@ -1,3 +1,7 @@
+## 1.1.1
+
+  - update readme.md
+
 ## 1.1.0
 
   - Switching off dragging when image is fully transparent. (Opacity is equal to 0)
