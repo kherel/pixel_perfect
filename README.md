@@ -46,10 +46,10 @@ import 'package:pixel_perfect/pixel_perfect.dart';
 
 return PixelPerfect(
   assetPath: 'assets/design.png', // path to your asset image
-  scale: 1 // scale value (optional)
+  scale: 1, // scale value (optional)
   initBottom: 20, //  default bottom distance (optional)
   offset: Offset.zero, // default image offset (optional)
-  initOpacity: 0.4 // init opacity value (optional)
+  initOpacity: 0.4, // init opacity value (optional)
   child: Scaffold(
     ..
   )
@@ -67,7 +67,7 @@ return PixelPerfect.extended(
   ), 
   initBottom: 20, //  default bottom distance (optional)
   offset: Offset.zero, // default image offset (optional)
-  initOpacity: 0.4 // init opacity value (optional)
+  initOpacity: 0.4, // init opacity value (optional)
   child: Scaffold(
     ..
   )
