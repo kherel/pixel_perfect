@@ -1,3 +1,9 @@
+## 1.1.3
+
+  - Fix
+## 1.1.2
+
+  - ThemeData's accent migration
 ## 1.1.1
 
   - update readme.md
