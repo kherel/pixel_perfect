@@ -16,7 +16,7 @@ class PixelPerfect extends StatefulWidget {
     this.image,
     this.bottom = 20,
     required this.initOpacity,
-  })   : assert(initOpacity >= 0.0 && initOpacity <= 1.0),
+  })  : assert(initOpacity >= 0.0 && initOpacity <= 1.0),
         super(key: key);
 
   /// Creates an PixelPerfect Basic Widget.
@@ -139,7 +139,8 @@ class _PixelPerfectState extends State<PixelPerfect> {
                           decoration: isDraggable
                               ? BoxDecoration(
                                   border: Border.all(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                   ),
                                 )
                               : null,
